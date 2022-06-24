@@ -1,0 +1,27 @@
+body {
+    background-color: #231F1B;
+}
+p {
+    color: black;
+    font-family: "Lato", sans-serif;
+    font-weight: 200;
+}
+h1 {
+    color: #FCF3EA;
+    font-family: "Montserrat", sans-serif;
+    font-weight: lighter;
+    font-size: xx-large;
+}
+::placeholder {
+    color: black;
+    font-family: "Lato", sans-serif;
+    font-weight: 200;
+}
+input {
+    font-family: "Lato", sans-serif;
+    font-weight: 200;
+    color: #FCF3EA;
+}
+.footer {
+    color: #FCF3EA;
+}
