@@ -46,7 +46,15 @@ export function App() {
         <TextInput
         onMouseLeave={() => setempty(false)}
         value={torrentname} 
-        onChange={(e) => setTorrentname(e.target.value)}
+        onChange={(e) => {
+          if (e.target.value.length > 0){
+            setTorrentname(e.target.value)
+          } else {
+            setTorrentname(e.target.value)
+            setDisplayresults("none")
+            setDisplay("block")
+          }
+        }}
         placeholder="Input anime torrent to view its metdata..."
         radius="xl"
         color='#FCF3EA'
@@ -86,6 +94,7 @@ export function App() {
           <p>Subber: {data.subber}</p>
           <p>Subtitles: {data.subtitles}</p>
           <p>Meta: {data.meta}</p>
+          
         </div>
         </SimpleGrid>
       </Container>
