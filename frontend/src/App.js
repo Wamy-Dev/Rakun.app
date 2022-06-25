@@ -2,17 +2,16 @@ import React, { useState } from "react";
 import './App.css';
 import "@fontsource/archivo"
 import "@fontsource/montserrat"
-import { Center, TextInput, ActionIcon, Container, SimpleGrid, Tooltip} from '@mantine/core';
+import { Center, TextInput, ActionIcon, Container, SimpleGrid, Tooltip } from '@mantine/core';
 import rakun from "@lowlighter/rakun"
 import Raccoon from "./raccoon.svg"
-
 export function App() {
   const [display, setDisplay] = useState("block");
   const [displayresults, setDisplayresults] = useState("none");
   const [torrentname, setTorrentname] = useState("");
   const [empty, setempty] = useState(false);
   const [data, setData] = useState([]);
-  const handleSubmit = (event) => {
+  const handleSubmit = () => {
     if (torrentname.length > 2){
       setDisplay("none")
       setDisplayresults("block")
@@ -25,7 +24,6 @@ export function App() {
     } else {
       setempty(true)
     }
-    
   }
   return (
     <SimpleGrid cols={1} spacing="xl">
@@ -34,18 +32,19 @@ export function App() {
       </Center>
       <Center>
         <img alt="logo" src={Raccoon} style={{width: "200px"}}></img>
-        </Center>
+      </Center>
       <Center>
         <Tooltip
         opened={empty}
         label="Please enter torrent name."
         radius="xl"
         withArrow
-        color="gray"
-        >
+        color="gray">
         <TextInput
         onMouseLeave={() => setempty(false)}
         value={torrentname} 
+        type="text"
+        className="textbox"
         onKeyPress={event => {
           if (event.key === 'Enter') {
             handleSubmit()
@@ -61,53 +60,53 @@ export function App() {
           }
         }}
         placeholder="Input anime torrent to view its metdata..."
-        radius="xl"
-        color='#FCF3EA'
-        style={{width: "32vw", minWidth: "320px"}}
+        radius="xl"  
+        style={{ width: "32vw", minWidth: "320px" }}
         rightSection={
-          <ActionIcon size={32} variant="outline" radius="xl" style={{backgroundColor: "#e0e0e0"}} onClick={() => {
+          <ActionIcon 
+          size={32} 
+          variant="outline" 
+          radius="xl" 
+          style={{backgroundColor: "#e0e0e0"}} 
+          onClick={() => {
             handleSubmit()
-            }}
-            >
-            {<img alt="logo" src={Raccoon} style={{width: "25px"}}></img>}
+          }}>
+          {<img alt="logo" src={Raccoon} style={{width: "25px"}}></img>}
           </ActionIcon>
         }
-        rightSectionWidth={42}
-        />
+        rightSectionWidth={42}/>
         </Tooltip>
       </Center>
       <Center>
-      <Container px="sm" py="sm" style={{backgroundColor: "#FFFFFF", width: "30vw", borderRadius: "32px", height: "30vw", minWidth: "300px", minHeight: "300px", maxHeight: "300px", display: `${display}`}}>
-      <SimpleGrid cols={1} spacing="sm">
-        <div>
-          <p>Thank you for visiting Rakun.app!</p>
-          <p>To get started just paste the name of your anime torrent into the bar and click the raccoon.</p>
-          <p>This is a simple app that allows you to paste an anime torrent name and get the metadata from it.</p>
-          <p>With Rakun, it returns useful things like "subber", "resolution", "audio", "subtitles", "codecs" and more.</p>
-          <p>This is just a small project built by pirate weebs for pirate weebs.</p>
-        </div>
+      <Container className="container" px="sm" py="sm" style={{ width: "30vw", borderRadius: "32px", height: "30vw", minWidth: "300px", minHeight: "300px", maxHeight: "300px", display: `${display}`}}>
+        <SimpleGrid cols={1} spacing="sm">
+          <div>
+            <p>Thank you for visiting rakun.app!</p>
+            <p>To get started just paste the name of your anime torrent into the bar and click the raccoon.</p>
+            <p>This is a simple app that allows you to paste an anime torrent name and get the metadata from it.</p>
+            <p>With rakun, it returns useful things like "subber", "resolution", "audio", "subtitles", "codecs" and more.</p>
+            <p>This is just a small project built by pirate weebs for pirate weebs.</p>
+          </div>
         </SimpleGrid>
       </Container>
-      <Container px="sm" py="sm" style={{backgroundColor: "#FFFFFF", width: "30vw", borderRadius: "32px", height: "30vw", minWidth: "300px", minHeight: "300px", maxHeight: "300px", display: `${displayresults}`}}>
-      <SimpleGrid cols={1} spacing="sm">
-        <div>
-          <p>Name: {data.name}</p>
-          <p>Resolution: {data.resolution}</p>
-          <p>Audio Codecs: {data.codecs}</p>
-          <p>Source: {data.source}</p>
-          <p>Season: {data.season}</p>
-          <p>Subber: {data.subber}</p>
-          <p>Subtitles: {data.subtitles}</p>
-          <p>Meta: {data.meta}</p>
-          
-        </div>
+      <Container className="container" px="sm" py="sm" style={{ width: "30vw", borderRadius: "32px", height: "30vw", minWidth: "300px", minHeight: "300px", maxHeight: "300px", display: `${displayresults}`}}>
+        <SimpleGrid cols={1} spacing="sm">
+          <div>
+            <p>Name: {data.name}</p>
+            <p>Resolution: {data.resolution}</p>
+            <p>Audio Codecs: {data.codecs}</p>
+            <p>Source: {data.source}</p>
+            <p>Season: {data.season}</p>
+            <p>Subber: {data.subber}</p>
+            <p>Subtitles: {data.subtitles}</p>
+            <p>Meta: {data.meta}</p>  
+          </div>
         </SimpleGrid>
       </Container>
-      
       </Center>
       <Center>
         <Container style={{position: "fixed", bottom: "0px"}}>
-        <p className='footer'>Frontend by <a href="https://github.com/Wamy-Dev/Rakun.app" target="_blank" rel="noreferrer" style={{color: "#FCF3EA"}}>@Wamy-Dev</a>, Rakun by <a href="https://github.com/lowlighter/rakun" style={{color: "#FCF3EA"}} target="_blank" rel="noreferrer">@Lowlighter</a></p>
+          <p className='footer'>Frontend by <a href="https://github.com/Wamy-Dev/Rakun.app" target="_blank" rel="noreferrer" style={{color: "#FCF3EA"}}>@Wamy-Dev</a>, Rakun by <a href="https://github.com/lowlighter/rakun" style={{color: "#FCF3EA"}} target="_blank" rel="noreferrer">@Lowlighter</a></p>
         </Container>
       </Center>
     </SimpleGrid>
