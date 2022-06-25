@@ -1,12 +1,32 @@
+import React, { useState } from "react";
 import './App.css';
 import "@fontsource/archivo"
 import "@fontsource/montserrat"
-import { Center, TextInput, TextInputProps, ActionIcon, useMantineTheme, Container, SimpleGrid} from '@mantine/core';
-import { Search, ArrowRight, ArrowLeft } from 'tabler-icons-react';
+import { Center, TextInput, ActionIcon, Container, SimpleGrid, Tooltip} from '@mantine/core';
 import rakun from "@lowlighter/rakun"
 import Raccoon from "./raccoon.svg"
 
 export function App() {
+  const [display, setDisplay] = useState("block");
+  const [displayresults, setDisplayresults] = useState("none");
+  const [torrentname, setTorrentname] = useState("");
+  const [empty, setempty] = useState(false);
+  const [data, setData] = useState([]);
+  const handleSubmit = (event) => {
+    if (torrentname.length > 2){
+      setDisplay("none")
+      setDisplayresults("block")
+      try {
+        const data = rakun.parse(torrentname)
+        setData(data)
+      } catch (e) {
+        console.log("fails")
+      }
+    } else {
+      setempty(true)
+    }
+    
+  }
   return (
     <SimpleGrid cols={1} spacing="xl">
       <Center>
@@ -16,23 +36,35 @@ export function App() {
         <img alt="logo" src={Raccoon} style={{width: "200px"}}></img>
         </Center>
       <Center>
+        <Tooltip
+        opened={empty}
+        label="Please enter torrent name."
+        radius="xl"
+        withArrow
+        color="gray"
+        >
         <TextInput
+        onMouseLeave={() => setempty(false)}
+        value={torrentname} 
+        onChange={(e) => setTorrentname(e.target.value)}
         placeholder="Input anime torrent to view its metdata..."
         radius="xl"
         color='#FCF3EA'
         style={{width: "32vw", minWidth: "320px"}}
         rightSection={
           <ActionIcon size={32} variant="outline" radius="xl" style={{backgroundColor: "#e0e0e0"}} onClick={() => {
-            console.log(rakun.parse("[Team246] Ghost in the shell Stand alone complex S01 E10-E15 [BDREMUX 1080P MULTi DTSHDMA 5.1][VOSTFR]"))
-          }}>
+            handleSubmit()
+            }}
+            >
             {<img alt="logo" src={Raccoon} style={{width: "25px"}}></img>}
           </ActionIcon>
         }
         rightSectionWidth={42}
         />
+        </Tooltip>
       </Center>
       <Center>
-      <Container px="sm" py="sm" style={{backgroundColor: "#FFFFFF", width: "30vw", borderRadius: "32px", height: "30vw", minWidth: "300px", minHeight: "300px", maxHeight: "300px"}}>
+      <Container px="sm" py="sm" style={{backgroundColor: "#FFFFFF", width: "30vw", borderRadius: "32px", height: "30vw", minWidth: "300px", minHeight: "300px", maxHeight: "300px", display: `${display}`}}>
       <SimpleGrid cols={1} spacing="sm">
         <div>
           <p>Thank you for visiting Rakun.app!</p>
@@ -43,6 +75,21 @@ export function App() {
         </div>
         </SimpleGrid>
       </Container>
+      <Container px="sm" py="sm" style={{backgroundColor: "#FFFFFF", width: "30vw", borderRadius: "32px", height: "30vw", minWidth: "300px", minHeight: "300px", maxHeight: "300px", display: `${displayresults}`}}>
+      <SimpleGrid cols={1} spacing="sm">
+        <div>
+          <p>Name: {data.name}</p>
+          <p>Resolution: {data.resolution}</p>
+          <p>Audio Codecs: {data.codecs}</p>
+          <p>Source: {data.source}</p>
+          <p>Season: {data.season}</p>
+          <p>Subber: {data.subber}</p>
+          <p>Subtitles: {data.subtitles}</p>
+          <p>Meta: {data.meta}</p>
+        </div>
+        </SimpleGrid>
+      </Container>
+      
       </Center>
       <Center>
         <Container style={{position: "fixed", bottom: "0px"}}>
