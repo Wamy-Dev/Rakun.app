@@ -13,26 +13,26 @@ export function App() {
         <h1>rakun.app</h1>
       </Center>
       <Center>
-        <img src={Raccoon} style={{width: "200px"}}></img>
+        <img alt="logo" src={Raccoon} style={{width: "200px"}}></img>
         </Center>
       <Center>
         <TextInput
-        placeholder="Input your anime torrent to view its metdata."
+        placeholder="Input anime torrent to view its metdata..."
         radius="xl"
         color='#FCF3EA'
         style={{width: "32vw", minWidth: "320px"}}
         rightSection={
-          <ActionIcon size={32} radius="xl" style={{backgroundColor: "grey"}} variant="filled" onClick={() => {
+          <ActionIcon size={32} variant="outline" radius="xl" style={{backgroundColor: "#e0e0e0"}} onClick={() => {
             console.log(rakun.parse("[Team246] Ghost in the shell Stand alone complex S01 E10-E15 [BDREMUX 1080P MULTi DTSHDMA 5.1][VOSTFR]"))
           }}>
-            {<img src={Raccoon} style={{width: "25px"}}></img>}
+            {<img alt="logo" src={Raccoon} style={{width: "25px"}}></img>}
           </ActionIcon>
         }
         rightSectionWidth={42}
         />
       </Center>
       <Center>
-      <Container px="sm" py="sm" style={{backgroundColor: "#FFFFFF", width: "30vw", borderRadius: "30px", height: "30vw", minWidth: "300px", minHeight: "300px"}}>
+      <Container px="sm" py="sm" style={{backgroundColor: "#FFFFFF", width: "30vw", borderRadius: "32px", height: "30vw", minWidth: "300px", minHeight: "300px", maxHeight: "300px"}}>
       <SimpleGrid cols={1} spacing="sm">
         <div>
           <p>Thank you for visiting Rakun.app!</p>
@@ -45,7 +45,9 @@ export function App() {
       </Container>
       </Center>
       <Center>
-        <p className='footer'>Frontend by @Wamy-Dev, Rakun by @Lowlighter</p>
+        <Container style={{position: "fixed", bottom: "0px"}}>
+        <p className='footer'>Frontend by <a href="https://github.com/Wamy-Dev/Rakun.app" target="_blank" rel="noreferrer" style={{color: "#FCF3EA"}}>@Wamy-Dev</a>, Rakun by <a href="https://github.com/lowlighter/rakun" style={{color: "#FCF3EA"}} target="_blank" rel="noreferrer">@Lowlighter</a></p>
+        </Container>
       </Center>
     </SimpleGrid>
   );
