@@ -9,7 +9,7 @@ Now featuring a beautiful frontend by me. 🦝
 </div>
 
 # Website = [rakun.app](https://rakun.app)
-The simple ui frontend for rakun, hosted right here on Github! It has all the features of the Rakun project but in a much more usable form.
+The simple ui frontend for rakun, hosted right here on Github! It has all the features of the Rakun project but in a much more usable form. **Currently the website is broken for iOS devices along with anyone trying to use rakun.app on the Safari browser -> [Issue #26.](https://github.com/lowlighter/rakun/issues/26)**
 
 # What is this?
 Rakun.app is simply a buitiful frontend for the [Rakun project](https://github.com/lowlighter/rakun) by [@Lowlighter](https://github.com/lowlighter). Rakun extracts simple information from your anime torrent to easily visualize the data that the torrent contains. It uses simple regex functions to take apart the data and give you the seperate peices that you want from it. This has no way of getting the actual torrent details such as filesize or other things like that, every bit of data gathered is from the torrent title.
