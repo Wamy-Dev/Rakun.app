@@ -46,6 +46,11 @@ export function App() {
         <TextInput
         onMouseLeave={() => setempty(false)}
         value={torrentname} 
+        onKeyPress={event => {
+          if (event.key === 'Enter') {
+            handleSubmit()
+          }
+        }}
         onChange={(e) => {
           if (e.target.value.length > 0){
             setTorrentname(e.target.value)
