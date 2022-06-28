@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { isSafari, isIOS, isIE, CustomView } from 'react-device-detect';
 import './App.css';
 import "@fontsource/archivo"
 import "@fontsource/montserrat"
 import { Center, TextInput, ActionIcon, Container, SimpleGrid, Tooltip } from '@mantine/core';
 import rakun from "@lowlighter/rakun"
-import Raccoon from "./raccoon.svg"
+import Raccoon from './raccoon.svg'
+import * as rdd from 'react-device-detect';
+
+rdd.isSafari = true;
 export function App() {
   const [display, setDisplay] = useState("block");
   const [displayresults, setDisplayresults] = useState("none");
@@ -25,7 +29,8 @@ export function App() {
       setempty(true)
     }
   }
-  return (
+    return (
+    <>
     <SimpleGrid cols={1} spacing="xl">
       <Center>
         <h1>rakun.app</h1>
@@ -108,9 +113,24 @@ export function App() {
         <Container style={{position: "fixed", bottom: "0px"}}>
           <p className='footer'>Frontend by <a href="https://github.com/Wamy-Dev/Rakun.app" target="_blank" rel="noreferrer" style={{color: "#FCF3EA"}}>@Wamy-Dev</a>, Rakun by <a href="https://github.com/lowlighter/rakun" style={{color: "#FCF3EA"}} target="_blank" rel="noreferrer">@Lowlighter</a></p>
         </Container>
-      </Center>
+      </Center> 
     </SimpleGrid>
-  );
-}
+    <CustomView condition={isIE===true || isIOS===true || isSafari===true}>
+        <SimpleGrid cols={1} spacing="xl">
+        <Center>
+          <h1>
+            rakun.app
+          </h1>
+          </Center>
+          <Center>
+          <p className='footer'>
+            Unfortunately rakun.app is not available on this browser. Due to <a href="https://caniuse.com/js-regexp-lookbehind" target="_blank" rel="noreferrer" style={{color: "#FCF3EA"}}>regex lookbehind</a> not being supported Safari, IE, and iOS. Please visit on a different device or browser.
+          </p>
+          </Center>
+        </SimpleGrid>
+      </CustomView>
+    </>
+    );
+  }
 
 export default App;
