@@ -5,10 +5,7 @@ import "@fontsource/archivo"
 import "@fontsource/montserrat"
 import { Center, TextInput, ActionIcon, Container, SimpleGrid, Tooltip } from '@mantine/core';
 import rakun from "@lowlighter/rakun"
-import Raccoon from './raccoon.svg'
-import * as rdd from 'react-device-detect';
-
-rdd.isSafari = true;
+import Raccoon from './raccoon.svg';
 export function App() {
   const [display, setDisplay] = useState("block");
   const [displayresults, setDisplayresults] = useState("none");
